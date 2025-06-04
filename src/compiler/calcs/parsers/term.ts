@@ -23,5 +23,13 @@ export function parseTerm(ctx: ParseContext): Statement {
     };
   }
 
+  if (token.type === "STRING") {
+    consume(ctx, "STRING");
+    return {
+      type: "StringLiteral",
+      value: token.value,
+    };
+  }
+
   throw new Error(`Unexpected token in term: ${token.type}`);
 }

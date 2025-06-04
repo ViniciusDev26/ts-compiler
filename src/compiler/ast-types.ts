@@ -31,6 +31,11 @@ export interface BinaryExpression extends ASTNode {
   right: Statement;
 }
 
+export interface StringLiteral extends ASTNode {
+  type: "StringLiteral";
+  value: string;
+}
+
 export interface NumberLiteral extends ASTNode {
   type: "NumberLiteral";
   value: number;
@@ -42,4 +47,5 @@ export type Statement =
   | PrintStatement
   | IdentifierDeclaration
   | BinaryExpression
+  | StringLiteral
   | NumberLiteral;

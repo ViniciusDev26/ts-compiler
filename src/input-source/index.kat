@@ -1,4 +1,4 @@
 const result = 2 + 5
 const result2 = 5 - 3
-print(result)
+print("HELLO WORLD")
 print(result2)

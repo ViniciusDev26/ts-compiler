@@ -7,6 +7,7 @@ export type TokenType =
   | "IDENTIFIER"
   | "EQUALS"
   | "NUMBER"
+  | "STRING"
   | "PLUS"
   | "MINUS"
   | "SEMICOLON";
@@ -29,6 +30,7 @@ export function lexer(input: string): Token[] {
     [/^\+/, "PLUS"],
     [/^-/, "MINUS"],
     [/^\d+/, "NUMBER"],
+    [/^"[^"]*"/, "STRING"],
   ];
 
   const tokens: Token[] = [];

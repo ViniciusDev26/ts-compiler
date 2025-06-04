@@ -50,6 +50,7 @@ export function generateJsCode(node: Statement[] | Statement): string {
       }
 
       case "NumberLiteral":
+      case "StringLiteral":
         return `${statement.value}`;
 
       case "PrintStatement":
