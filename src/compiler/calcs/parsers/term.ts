@@ -3,6 +3,11 @@ import type { ParseContext } from "../../parser";
 import { consume } from "../consume";
 import { peek } from "../peek";
 
+/**
+ * term = number | identifier | string
+ * @param ctx - The parse context
+ * @returns The parsed term
+ */
 export function parseTerm(ctx: ParseContext): Statement {
   const token = peek(ctx);
   if (!token) throw new Error("Unexpected end of input");

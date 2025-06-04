@@ -3,6 +3,11 @@ import type { ParseContext } from "../../parser";
 import { consume } from "../consume";
 import { parseExpression } from "./expression";
 
+/**
+ * var identifier = expression
+ * @param ctx - The parse context
+ * @returns The parsed variable declaration
+ */
 export function parseVariableDeclaration(
   ctx: ParseContext,
 ): VariableDeclaration {

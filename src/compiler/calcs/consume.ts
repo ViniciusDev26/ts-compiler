@@ -1,6 +1,12 @@
 import type { Token } from "../lexer";
 import type { ParseContext } from "../parser";
 
+/**
+ * Consumes the next token from the parse context
+ * @param ctx - The parse context
+ * @param expected - The expected token type
+ * @returns The consumed token
+ */
 export function consume(ctx: ParseContext, expected?: string): Token {
   const next_token = ctx.tokens[ctx.position++];
 

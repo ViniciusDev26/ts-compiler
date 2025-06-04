@@ -1,5 +1,10 @@
 import type { ASTNode, Statement } from "./ast-types";
 
+/**
+ * Evaluates the AST node
+ * @param node - The AST node
+ * @returns The evaluated value
+ */
 export function evaluate(node: Statement): number {
   switch (node.type) {
     case "NumberLiteral":
@@ -26,6 +31,11 @@ export function evaluate(node: Statement): number {
   }
 }
 
+/**
+ * Generates the JavaScript code from the AST
+ * @param node - The AST node
+ * @returns The generated JavaScript code
+ */
 export function generateJsCode(node: Statement[] | Statement): string {
   const input = Array.isArray(node) ? node : [node];
   let code = "";

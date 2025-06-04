@@ -17,6 +17,11 @@ export interface Token {
   value: string;
 }
 
+/**
+ * Lexes the input string into a list of tokens
+ * @param input - The input string
+ * @returns The list of tokens
+ */
 export function lexer(input: string): Token[] {
   const tokenSpecs: [RegExp, TokenType | null][] = [
     [/^\s+/, null],

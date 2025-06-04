@@ -4,6 +4,11 @@ import { consume } from "../consume";
 import { peek } from "../peek";
 import { parseTerm } from "./term";
 
+/**
+ * expression = term (("+" | "-") term)*
+ * @param ctx - The parse context
+ * @returns The parsed expression
+ */
 export function parseExpression(ctx: ParseContext): Statement {
   let left = parseTerm(ctx);
 

@@ -10,6 +10,11 @@ export interface ParseContext {
   position: number;
 }
 
+/**
+ * Parses the tokens into a list of statements
+ * @param tokens - The tokens to parse
+ * @returns The parsed statements
+ */
 export function parser(tokens: Token[]): Statement[] {
   const ctx: ParseContext = {
     tokens,

@@ -1,3 +1,7 @@
+/**
+ * Draws the easter egg
+ * @returns The easter egg
+ */
 export function drawEasterEgg() {
   return `\`
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
