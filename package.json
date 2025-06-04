@@ -5,7 +5,7 @@
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
-    "dev": "tsx watch src/compiler/run.ts",
+    "dev": "tsx watch --include './src/input-source/**/*.kat' src/compiler/run.ts",
     "lint": "biome check --write",
     "lint:fix": "biome check --write --unsafe",
     "prepare": "husky"
