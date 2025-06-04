@@ -4,6 +4,7 @@ import type {
   NumberLiteral,
   VariableDeclaration,
   PrintStatement,
+  ConstantDeclaration,
 } from "./ast-types";
 import { consume, peek } from "./calcs";
 import type { Token } from "./lexer";
@@ -16,8 +17,16 @@ export function parser(tokens: Token[]): Statement[] {
     const name = consume(tokens[position++], "IDENTIFIER");
     consume(tokens[position++], "EQUALS");
     const value = parseExpression();
-    consume(tokens[position++], "SEMICOLON");
     return { type: "VariableDeclaration", name: name.value, value };
+  }
+
+  function parseConstantDeclaration(): ConstantDeclaration {
+    consume(tokens[position++], "KEYWORD_CONST");
+    const name = consume(tokens[position++], "IDENTIFIER");
+    consume(tokens[position++], "EQUALS");
+    const value = parseExpression();
+
+    return { type: "ConstantDeclaration", name: name.value, value };
   }
 
   function parsePrintStatement(): PrintStatement {
@@ -25,7 +34,6 @@ export function parser(tokens: Token[]): Statement[] {
     consume(tokens[position++], "LPAREN"); // (
     const expr = parseExpression(); // result, or more complex
     consume(tokens[position++], "RPAREN"); // )
-    consume(tokens[position++], "SEMICOLON"); // ;
     return { type: "PrintStatement", value: expr };
   }
 
@@ -87,6 +95,10 @@ export function parser(tokens: Token[]): Statement[] {
 
     if (token?.type === "KEYWORD_VAR") {
       statements.push(parseVariableDeclaration());
+    }
+
+    if (token?.type === "KEYWORD_CONST") {
+      statements.push(parseConstantDeclaration());
     }
 
     if (token?.type === "KEYWORD_PRINT") {

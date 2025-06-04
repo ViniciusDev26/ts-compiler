@@ -13,6 +13,12 @@ export interface VariableDeclaration extends ASTNode {
   value: Statement;
 }
 
+export interface ConstantDeclaration extends ASTNode {
+  type: "ConstantDeclaration";
+  name: string;
+  value: Statement;
+}
+
 export interface PrintStatement extends ASTNode {
   type: "PrintStatement";
   value: Statement;
@@ -32,6 +38,7 @@ export interface NumberLiteral extends ASTNode {
 
 export type Statement =
   | VariableDeclaration
+  | ConstantDeclaration
   | PrintStatement
   | IdentifierDeclaration
   | BinaryExpression

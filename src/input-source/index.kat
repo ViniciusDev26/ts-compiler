@@ -1,2 +1,2 @@
-var result = 2 + 2;
-print(result);
+const result = 2 + 2
+print(result)

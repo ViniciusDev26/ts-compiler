@@ -40,6 +40,10 @@ export function generateJsCode(node: Statement[] | Statement): string {
         code += `let ${statement.name} = ${generateJsCode(statement.value)};`;
         break;
 
+      case "ConstantDeclaration":
+        code += `const ${statement.name} = ${generateJsCode(statement.value)};`;
+        break;
+
       case "BinaryExpression": {
         code += `${generateJsCode(statement.left)} ${statement.operator} ${generateJsCode(statement.right)}`;
         break;

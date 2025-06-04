@@ -1,5 +1,6 @@
 export type TokenType =
   | "KEYWORD_VAR"
+  | "KEYWORD_CONST"
   | "KEYWORD_PRINT"
   | "LPAREN"
   | "RPAREN"
@@ -19,6 +20,7 @@ export function lexer(input: string): Token[] {
   const tokenSpecs: [RegExp, TokenType | null][] = [
     [/^\s+/, null],
     [/^var\b/, "KEYWORD_VAR"],
+    [/^const\b/, "KEYWORD_CONST"],
     [/^\bprint\b/, "KEYWORD_PRINT"],
     [/^\(/, "LPAREN"],
     [/^\)/, "RPAREN"],
@@ -26,7 +28,6 @@ export function lexer(input: string): Token[] {
     [/^\=/, "EQUALS"],
     [/^\+/, "PLUS"],
     [/^-/, "MINUS"],
-    [/^;/, "SEMICOLON"],
     [/^\d+/, "NUMBER"],
   ];
 
