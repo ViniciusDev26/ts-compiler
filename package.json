@@ -4,13 +4,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/run.ts"
+    "dev": "tsx watch src/run.ts",
+    "lint": "biome check --write",
+    "lint:fix": "biome check --write --unsafe"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
