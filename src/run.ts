@@ -1,8 +1,8 @@
-import { lexer } from './lexer';
-import { parser } from './parser';
-import { evaluate } from './codegen';
+import { evaluate } from "./codegen";
+import { lexer } from "./lexer";
+import { parser } from "./parser";
 
-const input = '4 - 2;';
+const input = "4 - 2;";
 
 try {
   const tokens = lexer(input);

@@ -1,5 +1,5 @@
-import { Token } from './lexer';
-import { Expression, BinaryExpression, NumberLiteral } from './ast-types';
+import type { BinaryExpression, Expression, NumberLiteral } from "./ast-types";
+import type { Token } from "./lexer";
 
 export function parser(tokens: Token[]): Expression {
   let position = 0;
@@ -19,24 +19,24 @@ export function parser(tokens: Token[]): Expression {
   function parseExpression(): Expression {
     let left = parseTerm();
 
-    while (peek() && peek()!.type === 'PLUS') {
-      consume('PLUS');
+    while (peek() && peek()?.type === "PLUS") {
+      consume("PLUS");
       const right = parseTerm();
       left = {
-        type: 'BinaryExpression',
+        type: "BinaryExpression",
         left,
-        operator: '+',
+        operator: "+",
         right,
       } as BinaryExpression;
     }
 
-    while (peek() && peek()!.type === 'MINUS') {
-      consume('MINUS');
+    while (peek() && peek()?.type === "MINUS") {
+      consume("MINUS");
       const right = parseTerm();
       left = {
-        type: 'BinaryExpression',
+        type: "BinaryExpression",
         left,
-        operator: '-',
+        operator: "-",
         right,
       } as BinaryExpression;
     }
@@ -45,19 +45,19 @@ export function parser(tokens: Token[]): Expression {
   }
 
   function parseTerm(): Expression {
-    const token = consume('NUMBER');
+    const token = consume("NUMBER");
     return {
-      type: 'NumberLiteral',
-      value: parseInt(token.value, 10),
+      type: "NumberLiteral",
+      value: Number.parseInt(token.value, 10),
     } as NumberLiteral;
   }
 
   const expr = parseExpression();
 
-  if (peek() && peek()!.type === 'SEMICOLON') {
-    consume('SEMICOLON');
+  if (peek() && peek()?.type === "SEMICOLON") {
+    consume("SEMICOLON");
   } else {
-    throw new Error('Missing semicolon at the end.');
+    throw new Error("Missing semicolon at the end.");
   }
 
   return expr;

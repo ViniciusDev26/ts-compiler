@@ -1,17 +1,17 @@
 export interface ASTNode {
-    type: string;
+  type: string;
 }
 
 export interface BinaryExpression extends ASTNode {
-    type: 'BinaryExpression';
-    left: Expression;
-    operator: string;
-    right: Expression;
+  type: "BinaryExpression";
+  left: Expression;
+  operator: string;
+  right: Expression;
 }
 
 export interface NumberLiteral extends ASTNode {
-    type: 'NumberLiteral';
-    value: number;
+  type: "NumberLiteral";
+  value: number;
 }
 
 export type Expression = BinaryExpression | NumberLiteral;
