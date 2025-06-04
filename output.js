@@ -1,5 +1,5 @@
 
-  const result = 2 + 2;console.log(result);
+  const result = 2 + 5;const result2 = 5 - 3;console.log(result);console.log(result2);
   `
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:cok0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0KXKOdc;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -18,5 +18,7 @@ async function bootstrap() {
   ${drawEasterEgg()}
   `,
   );
+
+  console.log("Compiled successfully");
 }
 void bootstrap();

@@ -1,2 +1,4 @@
-const result = 2 + 2
+const result = 2 + 5
+const result2 = 5 - 3
 print(result)
+print(result2)

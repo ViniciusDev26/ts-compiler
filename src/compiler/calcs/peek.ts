@@ -1,5 +1,6 @@
 import type { Token } from "../lexer";
+import type { ParseContext } from "../parser";
 
-export function peek(tokens: Token[], position: number): Token | undefined {
-  return tokens[position];
+export function peek(ctx: ParseContext): Token | undefined {
+  return ctx.tokens[ctx.position];
 }
