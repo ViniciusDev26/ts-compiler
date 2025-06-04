@@ -1,6 +1,6 @@
-import type { ASTNode, Expression } from "./ast-types";
+import type { ASTNode, Statement } from "./ast-types";
 
-export function evaluate(node: Expression): number {
+export function evaluate(node: Statement): number {
   switch (node.type) {
     case "NumberLiteral":
       return node.value;
@@ -26,18 +26,36 @@ export function evaluate(node: Expression): number {
   }
 }
 
-export function generateJsCode(node: Expression): string {
-  switch (node.type) {
-    case "VariableDeclaration":
-      return `let ${node.name} = ${generateJsCode(node.value)};`;
+export function generateJsCode(node: Statement[] | Statement): string {
+  const input = Array.isArray(node) ? node : [node];
+  let code = "";
 
-    case "BinaryExpression":
-      return `${generateJsCode(node.left)} ${node.operator} ${generateJsCode(node.right)}`;
+  for (const statement of input) {
+    switch (statement.type) {
+      case "Identifier":
+        code += statement.name;
+        break;
 
-    case "NumberLiteral":
-      return `${node.value}`;
+      case "VariableDeclaration":
+        code += `let ${statement.name} = ${generateJsCode(statement.value)};`;
+        break;
 
-    default:
-      throw new Error(`Unknown node type: ${(node as ASTNode).type}`);
+      case "BinaryExpression": {
+        code += `${generateJsCode(statement.left)} ${statement.operator} ${generateJsCode(statement.right)}`;
+        break;
+      }
+
+      case "NumberLiteral":
+        return `${statement.value}`;
+
+      case "PrintStatement":
+        code += `console.log(${generateJsCode(statement.value)});`;
+        break;
+
+      default:
+        throw new Error(`Unknown node type: ${(statement as ASTNode).type}`);
+    }
   }
+
+  return code;
 }

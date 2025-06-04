@@ -1,40 +1,39 @@
 import type {
   BinaryExpression,
-  Expression,
+  Statement,
   NumberLiteral,
   VariableDeclaration,
+  PrintStatement,
 } from "./ast-types";
+import { consume, peek } from "./calcs";
 import type { Token } from "./lexer";
 
-export function parser(tokens: Token[]): Expression {
+export function parser(tokens: Token[]): Statement[] {
   let position = 0;
 
-  function peek(): Token | undefined {
-    return tokens[position];
-  }
-
-  function consume(expected?: string): Token {
-    const token = tokens[position++];
-    if (expected && token.type !== expected) {
-      throw new Error(`Expected ${expected}, got ${token.type}`);
-    }
-    return token;
-  }
-
   function parseVariableDeclaration(): VariableDeclaration {
-    consume("KEYWORD_VAR"); // ou "KEYWORD_LET" dependendo do lexer
-    const name = consume("IDENTIFIER");
-    consume("EQUALS");
+    consume(tokens[position++], "KEYWORD_VAR"); // ou "KEYWORD_LET" dependendo do lexer
+    const name = consume(tokens[position++], "IDENTIFIER");
+    consume(tokens[position++], "EQUALS");
     const value = parseExpression();
-    consume("SEMICOLON");
+    consume(tokens[position++], "SEMICOLON");
     return { type: "VariableDeclaration", name: name.value, value };
   }
 
-  function parseExpression(): Expression {
+  function parsePrintStatement(): PrintStatement {
+    consume(tokens[position++], "KEYWORD_PRINT"); // print
+    consume(tokens[position++], "LPAREN"); // (
+    const expr = parseExpression(); // result, or more complex
+    consume(tokens[position++], "RPAREN"); // )
+    consume(tokens[position++], "SEMICOLON"); // ;
+    return { type: "PrintStatement", value: expr };
+  }
+
+  function parseExpression(): Statement {
     let left = parseTerm();
 
-    while (peek() && peek()?.type === "PLUS") {
-      consume("PLUS");
+    while (peek(tokens, position) && peek(tokens, position)?.type === "PLUS") {
+      consume(tokens[position++], "PLUS");
       const right = parseTerm();
       left = {
         type: "BinaryExpression",
@@ -44,8 +43,8 @@ export function parser(tokens: Token[]): Expression {
       } as BinaryExpression;
     }
 
-    while (peek() && peek()?.type === "MINUS") {
-      consume("MINUS");
+    while (peek(tokens, position) && peek(tokens, position)?.type === "MINUS") {
+      consume(tokens[position++], "MINUS");
       const right = parseTerm();
       left = {
         type: "BinaryExpression",
@@ -58,12 +57,12 @@ export function parser(tokens: Token[]): Expression {
     return left;
   }
 
-  function parseTerm(): Expression {
-    const token = peek();
+  function parseTerm(): Statement {
+    const token = peek(tokens, position);
     if (!token) throw new Error("Unexpected end of input");
 
     if (token.type === "NUMBER") {
-      consume("NUMBER");
+      consume(tokens[position++], "NUMBER");
       return {
         type: "NumberLiteral",
         value: Number.parseInt(token.value, 10),
@@ -71,7 +70,7 @@ export function parser(tokens: Token[]): Expression {
     }
 
     if (token.type === "IDENTIFIER") {
-      consume("IDENTIFIER");
+      consume(tokens[position++], "IDENTIFIER");
       return {
         type: "Identifier",
         name: token.value,
@@ -81,17 +80,19 @@ export function parser(tokens: Token[]): Expression {
     throw new Error(`Unexpected token in term: ${token.type}`);
   }
 
-  if (peek()?.type === "KEYWORD_VAR") {
-    return parseVariableDeclaration();
+  const statements: Statement[] = [];
+
+  while (peek(tokens, position)) {
+    const token = peek(tokens, position);
+
+    if (token?.type === "KEYWORD_VAR") {
+      statements.push(parseVariableDeclaration());
+    }
+
+    if (token?.type === "KEYWORD_PRINT") {
+      statements.push(parsePrintStatement());
+    }
   }
 
-  consume("SEMICOLON");
-
-  if (peek()?.type === "KEYWORD_VAR") {
-    return parseVariableDeclaration();
-  }
-
-  const expr = parseExpression();
-  consume("SEMICOLON");
-  return expr;
+  return statements;
 }

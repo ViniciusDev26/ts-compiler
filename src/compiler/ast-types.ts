@@ -10,14 +10,19 @@ export interface IdentifierDeclaration extends ASTNode {
 export interface VariableDeclaration extends ASTNode {
   type: "VariableDeclaration";
   name: string;
-  value: Expression;
+  value: Statement;
+}
+
+export interface PrintStatement extends ASTNode {
+  type: "PrintStatement";
+  value: Statement;
 }
 
 export interface BinaryExpression extends ASTNode {
   type: "BinaryExpression";
-  left: Expression;
+  left: Statement;
   operator: string;
-  right: Expression;
+  right: Statement;
 }
 
 export interface NumberLiteral extends ASTNode {
@@ -25,8 +30,9 @@ export interface NumberLiteral extends ASTNode {
   value: number;
 }
 
-export type Expression =
+export type Statement =
   | VariableDeclaration
+  | PrintStatement
   | IdentifierDeclaration
   | BinaryExpression
   | NumberLiteral;
