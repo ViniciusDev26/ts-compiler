@@ -5,7 +5,7 @@ import { peek } from "../peek";
 import { parseTerm } from "./term";
 
 /**
- * expression = term (("+" | "-") term)*
+ * expression = term (("+" | "-" | "%") term)*
  * @param ctx - The parse context
  * @returns The parsed expression
  */
@@ -30,6 +30,17 @@ export function parseExpression(ctx: ParseContext): Statement {
       type: "BinaryExpression",
       left,
       operator: "-",
+      right,
+    } as BinaryExpression;
+  }
+
+  while (peek(ctx) && peek(ctx)?.type === "MODULO") {
+    consume(ctx, "MODULO");
+    const right = parseTerm(ctx);
+    left = {
+      type: "BinaryExpression",
+      left,
+      operator: "%",
       right,
     } as BinaryExpression;
   }

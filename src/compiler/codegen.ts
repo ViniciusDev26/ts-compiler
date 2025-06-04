@@ -59,6 +59,10 @@ export function generateJsCode(node: Statement[] | Statement): string {
         break;
       }
 
+      case "ParenthesizedExpression":
+        code += `(${generateJsCode(statement.expression)})`;
+        break;
+
       case "NumberLiteral":
       case "StringLiteral":
         return `${statement.value}`;

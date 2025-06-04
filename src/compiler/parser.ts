@@ -3,7 +3,7 @@ import { peek } from "./calcs";
 import { parseConstantDeclaration } from "./calcs/parsers/constant-declaration";
 import { parsePrintStatement } from "./calcs/parsers/print";
 import { parseVariableDeclaration } from "./calcs/parsers/variable-declaration";
-import type { Token } from "./lexer";
+import type { Token } from "./calcs/tokens";
 
 export interface ParseContext {
   tokens: Token[];

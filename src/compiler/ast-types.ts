@@ -41,6 +41,11 @@ export interface NumberLiteral extends ASTNode {
   value: number;
 }
 
+export interface ParenthesizedExpression extends ASTNode {
+  type: "ParenthesizedExpression";
+  expression: Statement;
+}
+
 export type Statement =
   | VariableDeclaration
   | ConstantDeclaration
@@ -48,4 +53,5 @@ export type Statement =
   | IdentifierDeclaration
   | BinaryExpression
   | StringLiteral
-  | NumberLiteral;
+  | NumberLiteral
+  | ParenthesizedExpression;

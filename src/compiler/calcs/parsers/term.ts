@@ -2,6 +2,7 @@ import type { NumberLiteral, Statement } from "../../ast-types";
 import type { ParseContext } from "../../parser";
 import { consume } from "../consume";
 import { peek } from "../peek";
+import { parseParenthesizedExpression } from "./parenthesesized-expression";
 
 /**
  * term = number | identifier | string
@@ -16,7 +17,7 @@ export function parseTerm(ctx: ParseContext): Statement {
     consume(ctx, "NUMBER");
     return {
       type: "NumberLiteral",
-      value: Number.parseInt(token.value, 10),
+      value: Number.parseFloat(token.value),
     } as NumberLiteral;
   }
 
@@ -34,6 +35,10 @@ export function parseTerm(ctx: ParseContext): Statement {
       type: "StringLiteral",
       value: token.value,
     };
+  }
+
+  if (token.type === "LPAREN") {
+    return parseParenthesizedExpression(ctx);
   }
 
   throw new Error(`Unexpected token in term: ${token.type}`);

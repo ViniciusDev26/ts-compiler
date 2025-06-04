@@ -1,21 +1,4 @@
-export type TokenType =
-  | "KEYWORD_VAR"
-  | "KEYWORD_CONST"
-  | "KEYWORD_PRINT"
-  | "LPAREN"
-  | "RPAREN"
-  | "IDENTIFIER"
-  | "EQUALS"
-  | "NUMBER"
-  | "STRING"
-  | "PLUS"
-  | "MINUS"
-  | "SEMICOLON";
-
-export interface Token {
-  type: TokenType;
-  value: string;
-}
+import { tokenSpecs, type Token, type TokenType } from "./calcs/tokens";
 
 /**
  * Lexes the input string into a list of tokens
@@ -23,21 +6,6 @@ export interface Token {
  * @returns The list of tokens
  */
 export function lexer(input: string): Token[] {
-  const tokenSpecs: [RegExp, TokenType | null][] = [
-    [/^\s+/, null],
-    [/^var\b/, "KEYWORD_VAR"],
-    [/^const\b/, "KEYWORD_CONST"],
-    [/^\bprint\b/, "KEYWORD_PRINT"],
-    [/^\(/, "LPAREN"],
-    [/^\)/, "RPAREN"],
-    [/^[a-zA-Z_][a-zA-Z0-9_]*/, "IDENTIFIER"],
-    [/^\=/, "EQUALS"],
-    [/^\+/, "PLUS"],
-    [/^-/, "MINUS"],
-    [/^\d+/, "NUMBER"],
-    [/^"[^"]*"/, "STRING"],
-  ];
-
   const tokens: Token[] = [];
   let current = input;
 
