@@ -1,4 +1,11 @@
-export type TokenType = "NUMBER" | "PLUS" | "MINUS" | "SEMICOLON";
+export type TokenType =
+  | "KEYWORD_VAR"
+  | "IDENTIFIER"
+  | "EQUALS"
+  | "NUMBER"
+  | "PLUS"
+  | "MINUS"
+  | "SEMICOLON";
 
 export interface Token {
   type: TokenType;
@@ -8,6 +15,9 @@ export interface Token {
 export function lexer(input: string): Token[] {
   const tokenSpecs: [RegExp, TokenType | null][] = [
     [/^\s+/, null],
+    [/^var\b/, "KEYWORD_VAR"],
+    [/^[a-zA-Z_][a-zA-Z0-9_]*/, "IDENTIFIER"],
+    [/^\=/, "EQUALS"],
     [/^\+/, "PLUS"],
     [/^-/, "MINUS"],
     [/^;/, "SEMICOLON"],
