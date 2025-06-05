@@ -1,9 +1,11 @@
 import type { Statement } from "./ast-types";
-import { peek } from "./calcs";
-import { parseConstantDeclaration } from "./calcs/parsers/constant-declaration";
-import { parsePrintStatement } from "./calcs/parsers/print";
-import { parseVariableDeclaration } from "./calcs/parsers/variable-declaration";
-import type { Token } from "./calcs/tokens";
+import {
+  type Token,
+  parseConstantDeclaration,
+  parsePrintStatement,
+  parseVariableDeclaration,
+  peek,
+} from "./calcs";
 
 export interface ParseContext {
   tokens: Token[];
