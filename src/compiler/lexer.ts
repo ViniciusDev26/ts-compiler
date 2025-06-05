@@ -1,4 +1,4 @@
-import { tokenSpecs, type Token, type TokenType } from "./calcs/tokens";
+import { type Token, tokenSpecs } from "./calcs/tokens";
 
 /**
  * Lexes the input string into a list of tokens

@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import type { Token } from "../../../lexer";
-import { parseConstantDeclaration } from "../../parsers/constant-declaration";
+import { describe, expect, it } from "vitest";
+import type { Token } from "../../tokens";
+import { parseConstantDeclaration } from "../constant-declaration";
 
 describe("constant declaration", () => {
   it("should parse a constant declaration", () => {

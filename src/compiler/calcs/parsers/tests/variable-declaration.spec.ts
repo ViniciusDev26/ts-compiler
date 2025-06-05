@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import type { Token } from "../../../lexer";
-import { parseVariableDeclaration } from "../../parsers/variable-declaration";
+import { describe, expect, it } from "vitest";
+import type { Token } from "../../tokens";
+import { parseVariableDeclaration } from "../variable-declaration";
 
 describe("variable declaration", () => {
   it("should parse a variable declaration", () => {

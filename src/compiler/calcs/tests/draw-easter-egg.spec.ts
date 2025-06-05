@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { drawEasterEgg } from "../draw-easter-egg";
 
 describe("drawEasterEgg", () => {

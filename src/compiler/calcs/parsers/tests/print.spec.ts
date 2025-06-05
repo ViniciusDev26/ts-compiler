@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import type { Token } from "../../../lexer";
-import { parsePrintStatement } from "../../parsers/print";
+import { describe, expect, it } from "vitest";
+import type { Token } from "../../tokens";
+import { parsePrintStatement } from "../print";
 
 describe("print", () => {
   it("should parse a print statement", () => {

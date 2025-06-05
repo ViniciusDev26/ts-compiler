@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { parseParenthesizedExpression } from "../../parsers/parenthesesized-expression";
+import { describe, expect, it } from "vitest";
 import type { ParseContext } from "../../../parser";
+import { parseParenthesizedExpression } from "../parenthesesized-expression";
 
 describe("parseParenthesizedExpression", () => {
   it("should parse a parenthesized expression", () => {

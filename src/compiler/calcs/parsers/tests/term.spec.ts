@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import type { Token } from "../../../lexer";
-import { parseTerm } from "../../parsers/term";
+import { describe, expect, it } from "vitest";
+import type { Token } from "../../tokens";
+import { parseTerm } from "../term";
 
 describe("term", () => {
   it("should parse a number", () => {
