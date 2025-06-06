@@ -50,10 +50,12 @@ const tokenSpecsIdentifier: [RegExp, TokenType | null][] = [
 ];
 
 const tokenSpecsOperator: [RegExp, TokenType | null][] = [
-  [/^\%/, "MODULO"],
-  [/^\=/, "EQUALS"],
   [/^\+/, "PLUS"],
   [/^-/, "MINUS"],
+  [/^\*/, "MULTIPLY"],
+  [/^<>/, "DIVIDE"],
+  [/^\=/, "EQUALS"],
+  [/^\%/, "MODULO"],
 ];
 
 export const tokenSpecs: [RegExp, TokenType | null][] = [

@@ -1,4 +1,5 @@
 const result = 2 + 5
 const result2 = result + (10 % 2)
+const divide = 5 <> 2
 print("HELLO WORLD")
 print(result2)
