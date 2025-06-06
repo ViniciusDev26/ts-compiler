@@ -35,8 +35,9 @@ export function parseBinaryOperation(
   const valid_operations: readonly OperatorType[] = [
     "PLUS",
     "MINUS",
-    "MODULO",
+    "MULTIPLY",
     "DIVIDE",
+    "MODULO",
   ] as const;
 
   while (peek(ctx) && valid_operations.includes(peek(ctx)?.type)) {

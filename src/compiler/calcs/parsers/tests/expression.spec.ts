@@ -136,5 +136,24 @@ describe("expression", () => {
         right: { type: "NumberLiteral", value: 2 },
       });
     });
+
+    it("should parse a binary expression", () => {
+      const tokens: Token[] = [
+        { type: "MULTIPLY", value: "*" },
+        { type: "NUMBER", value: "2" },
+      ];
+      const ctx = { tokens, position: 0 };
+      const result = parseBinaryOperation(ctx, {
+        type: "NumberLiteral",
+        value: 1,
+      });
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        left: { type: "NumberLiteral", value: 1 },
+        operator: "*",
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
   });
 });
