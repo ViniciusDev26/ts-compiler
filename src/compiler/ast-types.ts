@@ -46,7 +46,13 @@ export interface ParenthesizedExpression extends ASTNode {
   expression: Statement;
 }
 
+export interface Program extends ASTNode {
+  type: "Program";
+  body: Statement[];
+}
+
 export type Statement =
+  | Program
   | VariableDeclaration
   | ConstantDeclaration
   | PrintStatement

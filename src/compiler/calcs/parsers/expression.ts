@@ -1,8 +1,54 @@
-import type { BinaryExpression, Statement } from "../../ast-types";
+import type { Statement } from "../../ast-types";
 import type { ParseContext } from "../../parser";
 import { consume } from "../consume";
 import { peek } from "../peek";
+import type { OperatorType } from "../tokens";
 import { parseTerm } from "./term";
+
+export function solveExpression(
+  left: Statement,
+  right: Statement,
+  operator: OperatorType,
+): Statement {
+  const map: Record<OperatorType, string> = {
+    PLUS: "+",
+    MINUS: "-",
+    MODULO: "%",
+    MULTIPLY: "*",
+    DIVIDE: "/",
+    EQUALS: "==",
+  };
+
+  return {
+    type: "BinaryExpression",
+    left,
+    right,
+    operator: map[operator],
+  };
+}
+
+export function parseBinaryOperation(
+  ctx: ParseContext,
+  left: Statement,
+): Statement {
+  let left_clone = left;
+  const valid_operations: readonly OperatorType[] = [
+    "PLUS",
+    "MINUS",
+    "MULTIPLY",
+    "DIVIDE",
+    "MODULO",
+  ] as const;
+
+  while (peek(ctx) && valid_operations.includes(peek(ctx)?.type)) {
+    const operator = peek(ctx)?.type;
+    consume(ctx, operator);
+    const right = parseTerm(ctx);
+    left_clone = solveExpression(left_clone, right, operator as OperatorType);
+  }
+
+  return left_clone;
+}
 
 /**
  * expression = term (("+" | "-" | "%") term)*
@@ -10,40 +56,7 @@ import { parseTerm } from "./term";
  * @returns The parsed expression
  */
 export function parseExpression(ctx: ParseContext): Statement {
-  let left = parseTerm(ctx);
+  const left = parseTerm(ctx);
 
-  while (peek(ctx) && peek(ctx)?.type === "PLUS") {
-    consume(ctx, "PLUS");
-    const right = parseTerm(ctx);
-    left = {
-      type: "BinaryExpression",
-      left,
-      operator: "+",
-      right,
-    } as BinaryExpression;
-  }
-
-  while (peek(ctx) && peek(ctx)?.type === "MINUS") {
-    consume(ctx, "MINUS");
-    const right = parseTerm(ctx);
-    left = {
-      type: "BinaryExpression",
-      left,
-      operator: "-",
-      right,
-    } as BinaryExpression;
-  }
-
-  while (peek(ctx) && peek(ctx)?.type === "MODULO") {
-    consume(ctx, "MODULO");
-    const right = parseTerm(ctx);
-    left = {
-      type: "BinaryExpression",
-      left,
-      operator: "%",
-      right,
-    } as BinaryExpression;
-  }
-
-  return left;
+  return parseBinaryOperation(ctx, left);
 }

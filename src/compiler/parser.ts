@@ -17,28 +17,31 @@ export interface ParseContext {
  * @param tokens - The tokens to parse
  * @returns The parsed statements
  */
-export function parser(tokens: Token[]): Statement[] {
+export function parser(tokens: Token[]): Statement {
   const ctx: ParseContext = {
     tokens,
     position: 0,
   };
-  const statements: Statement[] = [];
+  const program: Statement = {
+    type: "Program",
+    body: [],
+  };
 
   while (peek(ctx)) {
     const token = peek(ctx);
 
     if (token?.type === "KEYWORD_VAR") {
-      statements.push(parseVariableDeclaration(ctx));
+      program.body.push(parseVariableDeclaration(ctx));
     }
 
     if (token?.type === "KEYWORD_CONST") {
-      statements.push(parseConstantDeclaration(ctx));
+      program.body.push(parseConstantDeclaration(ctx));
     }
 
     if (token?.type === "KEYWORD_PRINT") {
-      statements.push(parsePrintStatement(ctx));
+      program.body.push(parsePrintStatement(ctx));
     }
   }
 
-  return statements;
+  return program;
 }

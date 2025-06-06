@@ -3,7 +3,13 @@ export type KeywordType =
   | "KEYWORD_CONST"
   | "KEYWORD_PRINT"
   | "KEYWORD_IF";
-export type OperatorType = "MODULO" | "PLUS" | "MINUS" | "EQUALS";
+export type OperatorType =
+  | "MODULO"
+  | "PLUS"
+  | "MINUS"
+  | "MULTIPLY"
+  | "DIVIDE"
+  | "EQUALS";
 export type BlockType = "LBRACE" | "RBRACE" | "LPAREN" | "RPAREN";
 export type LiteralType = "NUMBER" | "STRING";
 export type IdentifierType = "IDENTIFIER";
@@ -44,10 +50,12 @@ const tokenSpecsIdentifier: [RegExp, TokenType | null][] = [
 ];
 
 const tokenSpecsOperator: [RegExp, TokenType | null][] = [
-  [/^\%/, "MODULO"],
-  [/^\=/, "EQUALS"],
   [/^\+/, "PLUS"],
   [/^-/, "MINUS"],
+  [/^\*/, "MULTIPLY"],
+  [/^<>/, "DIVIDE"],
+  [/^\=/, "EQUALS"],
+  [/^\%/, "MODULO"],
 ];
 
 export const tokenSpecs: [RegExp, TokenType | null][] = [
