@@ -48,8 +48,11 @@ export function parseBinaryOperation(
     "LESS_THAN_EQUALS",
   ] as const;
 
-  while (peek(ctx) && valid_operations.includes(peek(ctx)?.type)) {
-    const operator = peek(ctx)?.type;
+  while (
+    peek(ctx) &&
+    valid_operations.includes(peek(ctx)?.type as OperatorType)
+  ) {
+    const operator = peek(ctx)?.type as OperatorType;
     consume(ctx, operator);
     const right = parseTerm(ctx);
     left_clone = solveExpression(left_clone, right, operator);

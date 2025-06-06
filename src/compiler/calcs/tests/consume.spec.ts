@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { Token } from "../../lexer";
 import { consume } from "../consume";
+import type { Token } from "../tokens";
 
 describe("consume", () => {
   it("should consume the next token", () => {
