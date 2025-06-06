@@ -1,12 +1,6 @@
-import { parseAssignment } from "@parsers/assignment";
+import { parseStatement } from "@parsers/statement";
 import type { Statement } from "./ast-types";
-import {
-  type Token,
-  parseConstantDeclaration,
-  parsePrintStatement,
-  parseVariableDeclaration,
-  peek,
-} from "./calcs";
+import { type Token, peek } from "./calcs";
 
 export interface ParseContext {
   tokens: Token[];
@@ -18,35 +12,16 @@ export interface ParseContext {
  * @param tokens - The tokens to parse
  * @returns The parsed statements
  */
-export function parser(tokens: Token[]): Statement {
+export function parser(tokens: Token[]): Statement[] {
   const ctx: ParseContext = {
     tokens,
     position: 0,
   };
-  const program: Statement = {
-    type: "Program",
-    body: [],
-  };
+  const body: Statement[] = [];
 
   while (peek(ctx)) {
-    const token = peek(ctx);
-
-    if (token?.type === "KEYWORD_VAR") {
-      program.body.push(parseVariableDeclaration(ctx));
-    }
-
-    if (token?.type === "KEYWORD_CONST") {
-      program.body.push(parseConstantDeclaration(ctx));
-    }
-
-    if (token?.type === "KEYWORD_PRINT") {
-      program.body.push(parsePrintStatement(ctx));
-    }
-
-    if (token?.type === "IDENTIFIER") {
-      program.body.push(parseAssignment(ctx));
-    }
+    body.push(parseStatement(ctx));
   }
 
-  return program;
+  return body;
 }

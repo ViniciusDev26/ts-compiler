@@ -36,8 +36,8 @@ export function evaluate(node: Statement): number {
  * @param node - The AST node
  * @returns The generated JavaScript code
  */
-export function generateJsCode(node: Statement): string {
-  const input = node.type === "Program" ? node.body : [node];
+export function generateJsCode(node: Statement | Statement[]): string {
+  const input = Array.isArray(node) ? node : [node];
   let code = "";
 
   for (const statement of input) {
@@ -73,6 +73,12 @@ export function generateJsCode(node: Statement): string {
 
       case "AssignmentExpression":
         code += `${statement.name} = ${generateJsCode(statement.value)};`;
+        break;
+
+      case "IfStatement":
+        code += `if (${generateJsCode(statement.condition)}) {
+          ${generateJsCode(statement.body)}
+        }`;
         break;
 
       default:

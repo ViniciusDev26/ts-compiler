@@ -1,5 +1,7 @@
 
-  const a = 5;const b = 6;let c = 0;c = (a * a) + (b * b);console.log("HIPOTENUSA:");console.log(c);console.log("HIPOTENUSA / 2");console.log(c / 2);
+  const a = 5;const b = 6;let c = 0;c = (a * a) + (b * b);console.log("HIPOTENUSA:");console.log(c);console.log("HIPOTENUSA / 2");console.log(c / 2);if (2 > 1) {
+          console.log("ALO 2");
+        }
   
 `;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:cok0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0KXKOdc;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

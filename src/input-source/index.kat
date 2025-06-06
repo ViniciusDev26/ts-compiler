@@ -9,3 +9,7 @@ print(c)
 
 print("HIPOTENUSA / 2")
 print(c <> 2)
+
+if(2 > 1) { 
+  print("ALO 2")
+}

@@ -52,6 +52,13 @@ export interface AssignmentExpression extends ASTNode {
   value: Statement;
 }
 
+export interface IfStatement extends ASTNode {
+  type: "IfStatement";
+  condition: Statement;
+  body: Statement[];
+  elseBody?: Statement[];
+}
+
 export interface Program extends ASTNode {
   type: "Program";
   body: Statement[];
@@ -67,4 +74,5 @@ export type Statement =
   | StringLiteral
   | NumberLiteral
   | ParenthesizedExpression
-  | AssignmentExpression;
+  | AssignmentExpression
+  | IfStatement;
