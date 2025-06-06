@@ -9,7 +9,11 @@ export type OperatorType =
   | "MINUS"
   | "MULTIPLY"
   | "DIVIDE"
-  | "EQUALS";
+  | "EQUALS"
+  | "GREATER_THAN"
+  | "GREATER_THAN_EQUALS"
+  | "LESS_THAN"
+  | "LESS_THAN_EQUALS";
 export type BlockType = "LBRACE" | "RBRACE" | "LPAREN" | "RPAREN";
 export type LiteralType = "NUMBER" | "STRING";
 export type IdentifierType = "IDENTIFIER" | "ATTRIBUTE_ASSIGNMENT";
@@ -55,8 +59,13 @@ const tokenSpecsOperator: [RegExp, TokenType | null][] = [
   [/^-/, "MINUS"],
   [/^\*/, "MULTIPLY"],
   [/^<>/, "DIVIDE"],
-  [/^\==/, "EQUALS"],
   [/^\%/, "MODULO"],
+
+  [/^\==/, "EQUALS"],
+  [/^\>=/, "GREATER_THAN_EQUALS"],
+  [/^\>/, "GREATER_THAN"],
+  [/^\<=/, "LESS_THAN_EQUALS"],
+  [/^\</, "LESS_THAN"],
 ];
 
 export const tokenSpecs: [RegExp, TokenType | null][] = [

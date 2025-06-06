@@ -115,6 +115,81 @@ describe("expression", () => {
         right: { type: "NumberLiteral", value: 2 },
       });
     });
+
+    it("should compare two numbers with equals", () => {
+      const result = solveExpression(
+        { type: "NumberLiteral", value: 1 },
+        { type: "NumberLiteral", value: 2 },
+        "EQUALS",
+      );
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        operator: "==",
+        left: { type: "NumberLiteral", value: 1 },
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
+
+    it("should compare two numbers with greater than", () => {
+      const result = solveExpression(
+        { type: "NumberLiteral", value: 1 },
+        { type: "NumberLiteral", value: 2 },
+        "GREATER_THAN",
+      );
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        operator: ">",
+        left: { type: "NumberLiteral", value: 1 },
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
+
+    it("should compare two numbers with greater than equals", () => {
+      const result = solveExpression(
+        { type: "NumberLiteral", value: 1 },
+        { type: "NumberLiteral", value: 2 },
+        "GREATER_THAN_EQUALS",
+      );
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        operator: ">=",
+        left: { type: "NumberLiteral", value: 1 },
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
+
+    it("should compare two numbers with less than", () => {
+      const result = solveExpression(
+        { type: "NumberLiteral", value: 1 },
+        { type: "NumberLiteral", value: 2 },
+        "LESS_THAN",
+      );
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        operator: "<",
+        left: { type: "NumberLiteral", value: 1 },
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
+
+    it("should compare two numbers with less than equals", () => {
+      const result = solveExpression(
+        { type: "NumberLiteral", value: 1 },
+        { type: "NumberLiteral", value: 2 },
+        "LESS_THAN_EQUALS",
+      );
+
+      expect(result).toEqual({
+        type: "BinaryExpression",
+        operator: "<=",
+        left: { type: "NumberLiteral", value: 1 },
+        right: { type: "NumberLiteral", value: 2 },
+      });
+    });
   });
 
   describe("parseBinaryOperation()", () => {
