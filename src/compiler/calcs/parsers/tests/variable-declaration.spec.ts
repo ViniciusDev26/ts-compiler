@@ -7,7 +7,7 @@ describe("variable declaration", () => {
     const tokens: Token[] = [
       { type: "KEYWORD_VAR", value: "var" },
       { type: "IDENTIFIER", value: "x" },
-      { type: "EQUALS", value: "=" },
+      { type: "ATTRIBUTE_ASSIGNMENT", value: "=" },
       { type: "NUMBER", value: "1" },
     ];
     const ctx = { tokens, position: 0 };

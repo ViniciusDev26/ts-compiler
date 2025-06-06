@@ -17,6 +17,10 @@ export function solveExpression(
     MULTIPLY: "*",
     DIVIDE: "/",
     EQUALS: "==",
+    GREATER_THAN: ">",
+    GREATER_THAN_EQUALS: ">=",
+    LESS_THAN: "<",
+    LESS_THAN_EQUALS: "<=",
   };
 
   return {
@@ -38,13 +42,17 @@ export function parseBinaryOperation(
     "MULTIPLY",
     "DIVIDE",
     "MODULO",
+    "GREATER_THAN",
+    "GREATER_THAN_EQUALS",
+    "LESS_THAN",
+    "LESS_THAN_EQUALS",
   ] as const;
 
   while (peek(ctx) && valid_operations.includes(peek(ctx)?.type)) {
     const operator = peek(ctx)?.type;
     consume(ctx, operator);
     const right = parseTerm(ctx);
-    left_clone = solveExpression(left_clone, right, operator as OperatorType);
+    left_clone = solveExpression(left_clone, right, operator);
   }
 
   return left_clone;

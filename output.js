@@ -1,5 +1,5 @@
 
-  const result = 2 + 5;const result2 = result + (10 % 2);const divide = 5 / 2;console.log("HELLO WORLD");console.log(result2);
+  const a = 5;const b = 6;let c = 0;c = (a * a) + (b * b);console.log("HIPOTENUSA:");console.log(c);console.log("HIPOTENUSA / 2");console.log(c / 2);
   
 `;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:cok0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0KXKOdc;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

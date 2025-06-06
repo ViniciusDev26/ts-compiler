@@ -1,5 +1,11 @@
-const result = 2 + 5
-const result2 = result + (10 % 2)
-const divide = 5 <> 2
-print("HELLO WORLD")
-print(result2)
+const a = 5
+const b = 6
+var c = 0
+
+c = (a*a) + (b*b)
+
+print("HIPOTENUSA:")
+print(c)
+
+print("HIPOTENUSA / 2")
+print(c <> 2)

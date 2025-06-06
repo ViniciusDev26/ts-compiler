@@ -1,5 +1,5 @@
-import type { Token } from "../lexer";
 import type { ParseContext } from "../parser";
+import type { Token } from "./tokens";
 
 /**
  * Consumes the next token from the parse context
