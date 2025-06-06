@@ -13,7 +13,7 @@ export function parseVariableDeclaration(
 ): VariableDeclaration {
   consume(ctx, "KEYWORD_VAR");
   const name = consume(ctx, "IDENTIFIER");
-  consume(ctx, "EQUALS");
+  consume(ctx, "ATTRIBUTE_ASSIGNMENT");
   const value = parseExpression(ctx);
 
   return { type: "VariableDeclaration", name: name.value, value };

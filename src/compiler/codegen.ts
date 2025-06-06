@@ -71,6 +71,10 @@ export function generateJsCode(node: Statement): string {
         code += `console.log(${generateJsCode(statement.value)});`;
         break;
 
+      case "AssignmentExpression":
+        code += `${statement.name} = ${generateJsCode(statement.value)};`;
+        break;
+
       default:
         throw new Error(`Unknown node type: ${(statement as ASTNode).type}`);
     }

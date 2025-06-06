@@ -13,7 +13,7 @@ export function parseConstantDeclaration(
 ): ConstantDeclaration {
   consume(ctx, "KEYWORD_CONST");
   const name = consume(ctx, "IDENTIFIER");
-  consume(ctx, "EQUALS");
+  consume(ctx, "ATTRIBUTE_ASSIGNMENT");
   const value = parseExpression(ctx);
 
   return { type: "ConstantDeclaration", name: name.value, value };

@@ -46,6 +46,12 @@ export interface ParenthesizedExpression extends ASTNode {
   expression: Statement;
 }
 
+export interface AssignmentExpression extends ASTNode {
+  type: "AssignmentExpression";
+  name: string;
+  value: Statement;
+}
+
 export interface Program extends ASTNode {
   type: "Program";
   body: Statement[];
@@ -60,4 +66,5 @@ export type Statement =
   | BinaryExpression
   | StringLiteral
   | NumberLiteral
-  | ParenthesizedExpression;
+  | ParenthesizedExpression
+  | AssignmentExpression;

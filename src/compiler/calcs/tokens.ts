@@ -12,7 +12,7 @@ export type OperatorType =
   | "EQUALS";
 export type BlockType = "LBRACE" | "RBRACE" | "LPAREN" | "RPAREN";
 export type LiteralType = "NUMBER" | "STRING";
-export type IdentifierType = "IDENTIFIER";
+export type IdentifierType = "IDENTIFIER" | "ATTRIBUTE_ASSIGNMENT";
 
 export type TokenType =
   | KeywordType
@@ -46,6 +46,7 @@ const tokenSpecsLiteral: [RegExp, TokenType | null][] = [
 ];
 
 const tokenSpecsIdentifier: [RegExp, TokenType | null][] = [
+  [/^\=/, "ATTRIBUTE_ASSIGNMENT"],
   [/^[a-zA-Z_][a-zA-Z0-9_]*/, "IDENTIFIER"],
 ];
 
@@ -54,7 +55,7 @@ const tokenSpecsOperator: [RegExp, TokenType | null][] = [
   [/^-/, "MINUS"],
   [/^\*/, "MULTIPLY"],
   [/^<>/, "DIVIDE"],
-  [/^\=/, "EQUALS"],
+  [/^\==/, "EQUALS"],
   [/^\%/, "MODULO"],
 ];
 

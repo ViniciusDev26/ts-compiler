@@ -1,3 +1,4 @@
+import { parseAssignment } from "@parsers/assignment";
 import type { Statement } from "./ast-types";
 import {
   type Token,
@@ -40,6 +41,10 @@ export function parser(tokens: Token[]): Statement {
 
     if (token?.type === "KEYWORD_PRINT") {
       program.body.push(parsePrintStatement(ctx));
+    }
+
+    if (token?.type === "IDENTIFIER") {
+      program.body.push(parseAssignment(ctx));
     }
   }
 
