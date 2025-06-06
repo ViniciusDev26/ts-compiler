@@ -32,6 +32,7 @@ export interface Token {
 
 const tokenSpecsKeyword: [RegExp, TokenType | null][] = [
   [/^\s+/, null],
+  [/^if\b/, "KEYWORD_IF"],
   [/^var\b/, "KEYWORD_VAR"],
   [/^const\b/, "KEYWORD_CONST"],
   [/^\bprint\b/, "KEYWORD_PRINT"],
@@ -41,7 +42,7 @@ const tokenSpecsBlock: [RegExp, TokenType | null][] = [
   [/^\(/, "LPAREN"],
   [/^\)/, "RPAREN"],
   [/^\{/, "LBRACE"],
-  [/\}/, "RBRACE"],
+  [/^}/, "RBRACE"],
 ];
 
 const tokenSpecsLiteral: [RegExp, TokenType | null][] = [

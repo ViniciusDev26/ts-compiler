@@ -8,6 +8,7 @@
     "dev": "tsx watch --include './src/input-source/**/*.kat' src/compiler/run.ts",
     "lint": "biome check --write",
     "lint:fix": "biome check --write --unsafe",
+    "check:types": "tsc -p ./tsconfig.json --noEmit",
     "prepare": "husky"
   },
   "keywords": [],
