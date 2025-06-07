@@ -3,10 +3,12 @@ import type { ParseContext } from "../../parser";
 
 import { peek } from "../peek";
 import { parseAssignment } from "./assignment";
+import { parseBreakStatement } from "./break";
 import { parseConstantDeclaration } from "./constant-declaration";
 import { parseIfDeclaration } from "./if";
 import { parsePrintStatement } from "./print";
 import { parseVariableDeclaration } from "./variable-declaration";
+import { parseWhileDeclaration } from "./while";
 
 export function parseStatement(ctx: ParseContext): Statement {
   const token = peek(ctx);
@@ -23,12 +25,20 @@ export function parseStatement(ctx: ParseContext): Statement {
     return parseConstantDeclaration(ctx);
   }
 
+  if (token?.type === "KEYWORD_WHILE") {
+    return parseWhileDeclaration(ctx);
+  }
+
   if (token?.type === "KEYWORD_PRINT") {
     return parsePrintStatement(ctx);
   }
 
   if (token?.type === "IDENTIFIER") {
     return parseAssignment(ctx);
+  }
+
+  if (token?.type === "KEYWORD_BREAK") {
+    return parseBreakStatement(ctx);
   }
 
   throw new Error(`Unknown statement: ${token?.type}`);

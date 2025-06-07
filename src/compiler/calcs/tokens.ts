@@ -2,7 +2,9 @@ export type KeywordType =
   | "KEYWORD_VAR"
   | "KEYWORD_CONST"
   | "KEYWORD_PRINT"
-  | "KEYWORD_IF";
+  | "KEYWORD_IF"
+  | "KEYWORD_WHILE"
+  | "KEYWORD_BREAK";
 export type OperatorType =
   | "MODULO"
   | "PLUS"
@@ -36,6 +38,8 @@ const tokenSpecsKeyword: [RegExp, TokenType | null][] = [
   [/^var\b/, "KEYWORD_VAR"],
   [/^const\b/, "KEYWORD_CONST"],
   [/^\bprint\b/, "KEYWORD_PRINT"],
+  [/^while\b/, "KEYWORD_WHILE"],
+  [/^break\b/, "KEYWORD_BREAK"],
 ];
 
 const tokenSpecsBlock: [RegExp, TokenType | null][] = [

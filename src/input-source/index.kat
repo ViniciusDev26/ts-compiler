@@ -13,3 +13,12 @@ print(c <> 2)
 if(2 > 1) { 
   print("ALO 2")
 }
+
+var i = 0
+while(i < 10) {
+  i = i + 1
+  if(i > 5){
+    break
+  }
+  print(i)
+}
