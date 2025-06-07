@@ -81,6 +81,16 @@ export function generateJsCode(node: Statement | Statement[]): string {
         }`;
         break;
 
+      case "WhileStatement":
+        code += `while (${generateJsCode(statement.condition)}) {
+          ${generateJsCode(statement.body)}
+        }`;
+        break;
+
+      case "BreakStatement":
+        code += "break;";
+        break;
+
       default:
         throw new Error(`Unknown node type: ${(statement as ASTNode).type}`);
     }

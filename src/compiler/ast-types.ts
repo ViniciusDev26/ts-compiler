@@ -59,13 +59,17 @@ export interface IfStatement extends ASTNode {
   elseBody?: Statement[];
 }
 
-export interface Program extends ASTNode {
-  type: "Program";
+export interface WhileStatement extends ASTNode {
+  type: "WhileStatement";
+  condition: Statement;
   body: Statement[];
 }
 
+export interface BreakStatement extends ASTNode {
+  type: "BreakStatement";
+}
+
 export type Statement =
-  | Program
   | VariableDeclaration
   | ConstantDeclaration
   | PrintStatement
@@ -75,4 +79,6 @@ export type Statement =
   | NumberLiteral
   | ParenthesizedExpression
   | AssignmentExpression
-  | IfStatement;
+  | IfStatement
+  | WhileStatement
+  | BreakStatement;

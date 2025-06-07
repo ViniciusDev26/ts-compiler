@@ -1,6 +1,10 @@
 
   const a = 5;const b = 6;let c = 0;c = (a * a) + (b * b);console.log("HIPOTENUSA:");console.log(c);console.log("HIPOTENUSA / 2");console.log(c / 2);if (2 > 1) {
           console.log("ALO 2");
+        }let i = 0;while ((i < 10)) {
+          i = i + 1;if (i > 5) {
+          break;
+        }console.log(i);
         }
   
 `;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
