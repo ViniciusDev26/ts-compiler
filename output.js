@@ -1,14 +1,8 @@
 
-  const a = 5;const b = 6;let c = 0;c = (a * a) + (b * b);console.log("HIPOTENUSA:");console.log(c);console.log("HIPOTENUSA / 2");console.log(c / 2);if (2 > 1) {
-          console.log("ALO 2");
-        }let i = 0;while ((i < 10)) {
-          i = i + 1;if (i > 5) {
-          break;
-        }console.log(i);
-        }function printName() {
-          console.log("name");
-        }
-  
+  function average_speed(distance_in_meters,time_in_seconds) {
+          const meters_by_second = distance_in_meters / time_in_seconds;const speed_in_km = meters_by_second * 3.6;console.log("SPEED IN M/S:");console.log(meters_by_second);console.log("SPEED IN KM/H");console.log(speed_in_km);
+        }average_speed(10,2)
+  ;
 `;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;;;:;;;;;cox0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0Oxdol:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:cok0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0KXKOdc;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:ldkO0KKKKKKKKKKKKKKKKKKKK0KKKKKKKKKKKKKKKKKKKKK0O0KKKK0dc;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
