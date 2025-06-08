@@ -91,6 +91,14 @@ export function generateJsCode(node: Statement | Statement[]): string {
         code += "break;";
         break;
 
+      case "FunctionDeclaration":
+        code += `function ${statement.name}(${statement.parameters
+          .map((param) => param.name)
+          .join(",")}) {
+          ${generateJsCode(statement.body)}
+        }`;
+        break;
+
       default:
         throw new Error(`Unknown node type: ${(statement as ASTNode).type}`);
     }

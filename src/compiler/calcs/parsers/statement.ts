@@ -5,6 +5,7 @@ import { peek } from "../peek";
 import { parseAssignment } from "./assignment";
 import { parseBreakStatement } from "./break";
 import { parseConstantDeclaration } from "./constant-declaration";
+import { parseFunctionDeclaration } from "./function";
 import { parseIfDeclaration } from "./if";
 import { parsePrintStatement } from "./print";
 import { parseVariableDeclaration } from "./variable-declaration";
@@ -31,6 +32,10 @@ export function parseStatement(ctx: ParseContext): Statement {
 
   if (token?.type === "KEYWORD_PRINT") {
     return parsePrintStatement(ctx);
+  }
+
+  if (token?.type === "KEYWORD_FUNCTION") {
+    return parseFunctionDeclaration(ctx);
   }
 
   if (token?.type === "IDENTIFIER") {

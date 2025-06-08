@@ -69,6 +69,13 @@ export interface BreakStatement extends ASTNode {
   type: "BreakStatement";
 }
 
+export interface FunctionDeclaration extends ASTNode {
+  type: "FunctionDeclaration";
+  name: string;
+  parameters: IdentifierDeclaration[];
+  body: Statement[];
+}
+
 export type Statement =
   | VariableDeclaration
   | ConstantDeclaration
@@ -81,4 +88,5 @@ export type Statement =
   | AssignmentExpression
   | IfStatement
   | WhileStatement
-  | BreakStatement;
+  | BreakStatement
+  | FunctionDeclaration;
