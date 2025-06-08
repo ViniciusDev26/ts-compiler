@@ -267,20 +267,10 @@ Run the test suite using the following command:
 
 
 ---
-##  Project Roadmap
+##  Grupo
 
-- [X] **`Task 1`**: <strike>Implement sum.</strike>
-- [X] **`Task 2`**: <strike>Implement minus.</strike>
-- [X] **`Task 3`**: <strike>Implement modulo.</strike>
-- [X] **`Task 4`**: <strike>Implement variable.</strike>
-- [X] **`Task 5`**: <strike>Implement constant.</strike>
-- [X] **`Task 6`**: <strike>Implement print.</strike>
-- [X] **`Task 7`**: <strike>Implement string.</strike>
-- [ ] **`Task 8`**: Implement IF.
-- [ ] **`Task 9`**: Implement while.
-- [ ] **`Task 10`**: Implement division.
-- [ ] **`Task 11`**: Implement function.
-- [ ] **`Task 12`**: Implement function with params.
+- Carlos Vinicius (2020808)
+- Francisco Sales (2418891)
 
 ---
 
