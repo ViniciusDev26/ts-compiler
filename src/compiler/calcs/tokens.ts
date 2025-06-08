@@ -18,7 +18,7 @@ export type OperatorType =
   | "GREATER_THAN_EQUALS"
   | "LESS_THAN"
   | "LESS_THAN_EQUALS";
-export type BlockType = "LBRACE" | "RBRACE" | "LPAREN" | "RPAREN";
+export type BlockType = "LBRACE" | "RBRACE" | "LPAREN" | "RPAREN" | "COMMA";
 export type LiteralType = "NUMBER" | "STRING";
 export type IdentifierType = "IDENTIFIER" | "ATTRIBUTE_ASSIGNMENT";
 
@@ -51,10 +51,11 @@ const tokenSpecsBlock: [RegExp, TokenType | null][] = [
   [/^\)/, "RPAREN"],
   [/^\{/, "LBRACE"],
   [/^}/, "RBRACE"],
+  [/^,/, "COMMA"],
 ];
 
 const tokenSpecsLiteral: [RegExp, TokenType | null][] = [
-  [/^\d+/, "NUMBER"],
+  [/^\d+(\.\d+)?/, "NUMBER"],
   [/^"[^"]*"/, "STRING"],
 ];
 

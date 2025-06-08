@@ -1,28 +1,11 @@
-const a = 5
-const b = 6
-var c = 0
+fn average_speed(distance_in_meters, time_in_seconds) {
+  const meters_by_second = distance_in_meters <> time_in_seconds
+  const speed_in_km = meters_by_second * 3.6
 
-c = (a*a) + (b*b)
+  print("SPEED IN M/S:")
+  print(meters_by_second)
 
-print("HIPOTENUSA:")
-print(c)
-
-print("HIPOTENUSA / 2")
-print(c <> 2)
-
-if(2 > 1) { 
-  print("ALO 2")
+  print("SPEED IN KM/H")
+  print(speed_in_km)
 }
-
-var i = 0
-while(i < 10) {
-  i = i + 1
-  if(i > 5){
-    break
-  }
-  print(i)
-}
-
-fn printName() {
-  print("name")
-}
+average_speed(10, 2)

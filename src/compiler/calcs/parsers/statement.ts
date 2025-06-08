@@ -8,6 +8,7 @@ import { parseConstantDeclaration } from "./constant-declaration";
 import { parseFunctionDeclaration } from "./function";
 import { parseIfDeclaration } from "./if";
 import { parsePrintStatement } from "./print";
+import { parseTerm } from "./term";
 import { parseVariableDeclaration } from "./variable-declaration";
 import { parseWhileDeclaration } from "./while";
 
@@ -39,6 +40,11 @@ export function parseStatement(ctx: ParseContext): Statement {
   }
 
   if (token?.type === "IDENTIFIER") {
+    const next = ctx.tokens[ctx.position + 1];
+    if (next && next.type === "LPAREN") {
+      return parseTerm(ctx);
+    }
+
     return parseAssignment(ctx);
   }
 

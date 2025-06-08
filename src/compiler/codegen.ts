@@ -99,6 +99,12 @@ export function generateJsCode(node: Statement | Statement[]): string {
         }`;
         break;
 
+      case "FunctionCall":
+        code += `${statement.callee}(${statement.arguments
+          .map((arg) => generateJsCode(arg))
+          .join(",")})`;
+        break;
+
       default:
         throw new Error(`Unknown node type: ${(statement as ASTNode).type}`);
     }
