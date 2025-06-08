@@ -76,6 +76,12 @@ export interface FunctionDeclaration extends ASTNode {
   body: Statement[];
 }
 
+export interface FunctionCall extends ASTNode {
+  type: "FunctionCall";
+  callee: string;
+  arguments: Statement[];
+}
+
 export type Statement =
   | VariableDeclaration
   | ConstantDeclaration
@@ -89,4 +95,5 @@ export type Statement =
   | IfStatement
   | WhileStatement
   | BreakStatement
-  | FunctionDeclaration;
+  | FunctionDeclaration
+  | FunctionCall;

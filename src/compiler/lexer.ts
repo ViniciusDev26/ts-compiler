@@ -25,6 +25,7 @@ export function lexer(input: string): Token[] {
     }
 
     if (!matched) {
+      console.log(current);
       throw new Error(`Unexpected token: "${current[0]}"`);
     }
   }
