@@ -71,7 +71,7 @@ const tokenSpecsOperator: [RegExp, TokenType | null][] = [
   [/^<>/, "DIVIDE"],
   [/^\%/, "MODULO"],
 
-  [/^\==/, "EQUALS"],
+  [/^==/, "EQUALS"],
   [/^\>=/, "GREATER_THAN_EQUALS"],
   [/^\>/, "GREATER_THAN"],
   [/^\<=/, "LESS_THAN_EQUALS"],

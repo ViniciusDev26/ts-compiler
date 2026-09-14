@@ -13,10 +13,7 @@
     "moduleResolution": "node16",
 
     "paths": {
-      "@parsers/*": ["./src/compiler/calcs/parsers/*"],
-      "@parser/*": ["./src/compiler/parser/*"],
-      "@lexer/*": ["./src/compiler/lexer/*"],
-      "@codegen/*": ["./src/compiler/codegen/*"]
+      "@parsers/*": ["./src/compiler/calcs/parsers/*"]
     }
   }
 }
