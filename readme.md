@@ -1,8 +1,8 @@
 <p align="center">
-    <img src="./docs/logo.png" align="center" width="22%">
+    <img src="./docs/logo.png" align="center" width="20%">
 </p>
 
-<h1 align="center">Kat Compiler</h1>
+<h1 align="center">🗡️ Kat Compiler</h1>
 
 <p align="center">
   <em>A hand-written compiler that turns the <code>.kat</code> language into plain JavaScript.</em>
@@ -14,25 +14,44 @@
 	<img src="https://img.shields.io/github/languages/top/ViniciusDev26/ts-compiler?style=flat&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/badge/tests-vitest-6E9F18?style=flat&logo=vitest&logoColor=white" alt="vitest">
 	<img src="https://img.shields.io/badge/lint-biome-60A5FA?style=flat&logo=biome&logoColor=white" alt="biome">
+	<img src="https://img.shields.io/badge/type--safe-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="typescript">
+</p>
+
+<p align="center">
+  <a href="#-what-is-this">What is this</a> ·
+  <a href="#-example-writing-kat">Example</a> ·
+  <a href="#-how-the-compiler-works-under-the-hood">Architecture</a> ·
+  <a href="#-getting-started">Getting started</a> ·
+  <a href="#-project-structure">Structure</a> ·
+  <a href="#-editor-support">Editor support</a>
 </p>
 
 ---
 
-## What is this?
+## 📖 What is this?
 
-This project is a **compiler written from scratch in TypeScript**, with no parser generators and no compiler libraries. It compiles **Kat** (`.kat`) — a language that **doesn't exist outside this repository**, invented for learning purposes and named after **Katarina, the League of Legends champion** — into **executable JavaScript**.
+**Kat Compiler** is a compiler **written from scratch in TypeScript** — no parser generators, no compiler-construction libraries, no shortcuts. It compiles **Kat** (`.kat`), a language that **doesn't exist anywhere outside this repository**, into **plain, executable JavaScript**.
 
-In other words: TypeScript is the language the compiler is *implemented in*; Kat is the language it *compiles*. This started as an academic project to study, hands-on, how a programming language comes to life — from reading raw characters all the way to generating code.
+> **Why "Kat"?** The language is named after **Katarina**, the assassin champion from *League of Legends*. No deep lore beyond that — it just sounded like a good name for a small, sharp language.
+
+Don't confuse the two: **TypeScript** is the language this compiler is *written in*. **Kat** is the language this compiler *compiles*. One builds the other.
+
+This project exists to answer a question hands-on: how does a programming language actually come to life — from raw characters on a screen, all the way to running code?
 
 ```
-.kat (source code)  →  Lexer  →  Tokens  →  Parser  →  AST  →  Codegen  →  .js (JavaScript)
+   .kat source            Lexer            Parser             Codegen           output.js
+┌───────────────┐     ┌───────────┐    ┌─────────────┐     ┌─────────────┐    ┌───────────┐
+│ fn speed(a,b) │ ──▶ │  tokens   │ ─▶ │     AST      │ ──▶ │  JS string  │ ─▶ │  node.js  │
+│  print(a<>b)  │     │ [IDENT,   │    │ FunctionDecl │     │ function... │    │  ready to │
+└───────────────┘     │  LPAREN…] │    │  └ PrintStmt │     └─────────────┘    │    run    │
+                       └───────────┘    └─────────────┘                       └───────────┘
 ```
 
-None of these stages rely on external magic: the lexer is a regex table walked by hand, the parser is classic *recursive descent*, and the code generator builds JavaScript strings straight from the syntax tree.
+No black boxes: the lexer is a regex table walked by hand, the parser is textbook *recursive descent*, and the code generator builds JavaScript strings directly from the syntax tree. Everything is inspectable, and every stage has its own test suite.
 
 ---
 
-## Example: writing Kat
+## ✍️ Example: writing Kat
 
 ```kat
 fn average_speed(distance_in_meters, time_in_seconds) {
@@ -49,43 +68,43 @@ fn average_speed(distance_in_meters, time_in_seconds) {
 average_speed(10, 2)
 ```
 
-This gets compiled into equivalent JavaScript and written to `output.js`, ready to run with `node`.
+Run `npm run dev` and this becomes real, runnable JavaScript in `output.js` — ready for `node`.
 
-### Language features
+### Language cheat sheet
 
 | Category | Support |
 | :--- | :--- |
 | Variables | `var` (mutable) and `const` (immutable) |
 | Output | `print(expression)` |
-| Control flow | `if` / `else`, `while`, `break` |
+| Control flow | `if`, `while`, `break` |
 | Functions | declared with `fn`, with parameters and calls |
-| Arithmetic operators | `+` `-` `*` `%` and `<>` (division) |
-| Relational operators | `>` `>=` `<` `<=` `==` |
+| Arithmetic | `+` `-` `*` `%` and `<>` (yes — that's *division*) |
+| Comparisons | `>` `>=` `<` `<=` `==` |
 | Literals | numbers, strings, and parenthesized expressions |
 
-> Fun fact: in Kat, division is `<>`, not `/`. That's an intentional language-design quirk — check `src/compiler/calcs/tokens.ts` before assuming "standard" syntax.
+> 🩸 **Sharp edge, on purpose:** division in Kat is `<>`, not `/`. It's an intentional quirk of the language design — always check `src/compiler/calcs/tokens.ts` before assuming "normal" syntax rules apply.
 
 ---
 
-## How the compiler works under the hood
+## 🧠 How the compiler works under the hood
 
 | Stage | Where | What it does |
 | :--- | :--- | :--- |
-| 🔤 **Lexer** | `src/compiler/lexer.ts` | Scans the source text and turns it into a list of *tokens*, using regex specs (`tokens.ts`) |
-| 🌳 **Parser** | `src/compiler/parser.ts` + `src/compiler/calcs/parsers/*` | Consumes the tokens via *recursive descent* and builds the **AST** (Abstract Syntax Tree) |
-| 🧬 **AST** | `src/compiler/ast-types.ts` | Defines the tree's node types: declarations, expressions, literals, loops, functions |
-| ⚙️ **Codegen** | `src/compiler/codegen.ts` | Walks the AST and generates the final equivalent JavaScript string |
+| 🔤 **Lexer** | `src/compiler/lexer.ts` | Scans the raw source text and turns it into a flat list of *tokens*, driven by the regex table in `tokens.ts` |
+| 🌳 **Parser** | `src/compiler/parser.ts` + `src/compiler/calcs/parsers/*` | Walks the tokens via *recursive descent* and assembles the **AST** (Abstract Syntax Tree) |
+| 🧬 **AST** | `src/compiler/ast-types.ts` | The node types that make up the tree: declarations, expressions, literals, loops, functions |
+| ⚙️ **Codegen** | `src/compiler/codegen.ts` | Walks the AST and emits the equivalent JavaScript source, as a plain string |
 
-Every language construct (`if`, `while`, `fn`, assignments, etc.) has its own dedicated parser inside `src/compiler/calcs/parsers/`, which keeps the grammar organized and easy to extend — want to add a new keyword? Just write a new parser and wire it into `statement.ts`.
+Every language construct — `if`, `while`, `fn`, assignments, and so on — has its **own dedicated parser file** inside `src/compiler/calcs/parsers/`. That keeps the grammar modular and easy to extend: adding a new keyword to Kat means writing one new parser and wiring it into `statement.ts`, the dispatcher that decides which parser handles which token.
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - **Node.js** + **npm**
-- TypeScript (installed as a dev dependency)
+- TypeScript (already listed as a dev dependency — `npm install` handles it)
 
 ### Installation
 
@@ -103,7 +122,7 @@ The compiler reads `src/input-source/index.kat`, compiles it, and writes the res
 npm run dev
 ```
 
-This runs in *watch* mode: any change to the `.kat` file recompiles automatically. Then run the generated JavaScript:
+This runs in **watch mode** — edit the `.kat` file and it recompiles instantly. Then run the generated JavaScript:
 
 ```sh
 node output.js
@@ -113,10 +132,10 @@ node output.js
 
 ```sh
 npm test          # watch mode
-npm run test:run  # single run (CI)
+npm run test:run  # single run (CI-style)
 ```
 
-Tests live next to the code they cover, in `tests/` subfolders (e.g. `src/compiler/calcs/parsers/tests/`).
+Tests live right next to the code they cover, inside `tests/` subfolders (e.g. `src/compiler/calcs/parsers/tests/`) — one spec file per parser.
 
 ### Code quality
 
@@ -125,11 +144,11 @@ npm run check:types   # type checking (tsc --noEmit)
 npm run lint          # lint + format with Biome
 ```
 
-A Husky pre-commit hook runs tests and type checking automatically before every commit.
+A Husky pre-commit hook runs the test suite and type checker automatically before every commit — broken code never gets committed.
 
 ---
 
-## Project structure
+## 🗂️ Project structure
 
 ```
 ts-compiler/
@@ -147,18 +166,26 @@ ts-compiler/
 │   │       └── parsers/        # one parser per language construct
 │   └── input-source/
 │       └── index.kat           # sample Kat program
+├── editors/
+│   └── vscode-kat/              # VSCode syntax-highlighting extension
 ├── output.js                   # compiler output
 └── docs/logo.png
 ```
 
 ---
 
-## Editor support
+## 🎨 Editor support
 
-There's a minimal VSCode extension that adds syntax highlighting for `.kat` files — see [`editors/vscode-kat`](./editors/vscode-kat).
+Writing Kat in plain text gets old fast, so there's a minimal **VSCode extension** that adds syntax highlighting for `.kat` files — keywords, strings, numbers, operators (including that `<>` division), function declarations and calls.
+
+👉 See [`editors/vscode-kat`](./editors/vscode-kat) for install instructions.
+
+<p align="center">
+  <sub>Full language server support (real-time errors, autocomplete) is a natural next step — the lexer and parser are already there, ready to be reused.</sub>
+</p>
 
 ---
 
-## Author
+## 👤 Author
 
-- Carlos Vinicius (2020808)
+Built by **Carlos Vinicius** (2020808) as a hands-on dive into compiler construction.
