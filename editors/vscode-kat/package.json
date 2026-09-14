@@ -1,0 +1,27 @@
+{
+  "name": "kat-language",
+  "displayName": "Kat Language",
+  "description": "Syntax highlighting for the Kat (.kat) language compiled by ts-compiler.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "kat",
+        "aliases": ["Kat", "kat"],
+        "extensions": [".kat"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "kat",
+        "scopeName": "source.kat",
+        "path": "./syntaxes/kat.tmLanguage.json"
+      }
+    ]
+  }
+}
